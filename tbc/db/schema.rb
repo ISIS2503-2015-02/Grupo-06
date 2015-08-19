@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819072322) do
+ActiveRecord::Schema.define(version: 20150819084709) do
 
   create_table "conductors", force: true do |t|
     t.string   "nombre"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20150819072322) do
   create_table "usuarios", force: true do |t|
     t.string   "nombre"
     t.string   "documento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "vcubs", force: true do |t|
+    t.string   "posicion"
+    t.string   "estado"
+    t.boolean  "prestada"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

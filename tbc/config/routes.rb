@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
 
+  #resources se encarga de manejar las rutas del CRUD
+  resources :vcubs
+  put 'vcubs/:id/posicion' => 'vcubs#cambiar_posicion'
+  put 'vcubs/:id/estado' => 'vcubs#cambiar_estado'
+
   get 'emergencia/' => 'emergencia#index'
   get 'emergencia/create'
   get 'emergencia/show'
   get 'emergencia/destroy'
 
+
   resources :tranvia
   put 'tranvia/:id/posicion'  => 'tranvia#cambiar_posicion'
   put 'tranvia/:id/estado'  => 'tranvia#cambiar_estado'
   post 'tranvia/:id/emergencia' => 'tranvia#emergencia'
-
-
-  #resources se encarga de manejar las rutas del CRUD
+  
   resources :mobibuses
   put 'mobibuses/:id/posicion'  => 'mobibuses#cambiar_posicion'
   put 'mobibuses/:id/estado'  => 'mobibuses#cambiar_estado'
