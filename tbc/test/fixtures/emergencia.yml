@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  magnitud: 1
+  posicion: MyString
+  tipo_vehiculo: MyString
+  id_vehiculo: MyString
+  fecha: 2015-08-19 02:23:23
+
+two:
+  magnitud: 1
+  posicion: MyString
+  tipo_vehiculo: MyString
+  id_vehiculo: MyString
+  fecha: 2015-08-19 02:23:23

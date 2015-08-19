@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+
+  get 'emergencia/' => 'emergencia#index'
+  get 'emergencia/create'
+  get 'emergencia/show'
+  get 'emergencia/destroy'
+
   resources :tranvia
   put 'tranvia/:id/posicion'  => 'tranvia#cambiar_posicion'
   put 'tranvia/:id/estado'  => 'tranvia#cambiar_estado'
+  post 'tranvia/:id/emergencia' => 'tranvia#emergencia'
 
 
   #resources se encarga de manejar las rutas del CRUD

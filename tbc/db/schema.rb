@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819070028) do
+ActiveRecord::Schema.define(version: 20150819072322) do
 
   create_table "conductors", force: true do |t|
     t.string   "nombre"
     t.integer  "cedula"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "emergencia", force: true do |t|
+    t.integer  "magnitud"
+    t.string   "posicion"
+    t.string   "tipo_vehiculo"
+    t.string   "id_vehiculo"
+    t.datetime "fecha"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

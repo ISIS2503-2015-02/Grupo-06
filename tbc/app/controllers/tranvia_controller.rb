@@ -1,5 +1,5 @@
 class TranviaController < ApplicationController
-  before_action :set_tranvium, only: [:show, :edit, :update, :destroy, :cambiar_posicion, :cambiar_estado]
+  before_action :set_tranvium, only: [:show, :edit, :update, :destroy, :cambiar_posicion, :cambiar_estado, :emergencia]
 
   # GET /tranvia
   # GET /tranvia.json
@@ -71,6 +71,13 @@ class TranviaController < ApplicationController
   #PUT tranvia/:id/estado
   def cambiar_estado
     @tranvium.update_attribute(:estado,params[:estado])
+  end
+
+  #Reporta una nueva emergencia
+  #POST tranvia/:id/emergencia
+  def emergencia
+    @tranvium.update_attributes(boton_panico: true, estado: 'Emergencia')
+    redirect_to (emergencia_create_path(id_vehiculo: @tranvium.id, tipo_vehiculo: 'Tranvia', magnitud: 4, posicion: @tranvium.posicion ))
   end
 
   private
