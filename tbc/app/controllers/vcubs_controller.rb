@@ -62,7 +62,7 @@ class VcubsController < ApplicationController
   end
 
   #Modifica la posicion del vcub.
-  #PUT tranvia/:id/posicion
+  #PUT tranvia/:id/posicio n
   def cambiar_posicion
     @vcub.update_attribute(:posicion,params[:posicion])
   end
