@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :mobibuses
+
   resources :usuarios
 
   resources :conductors

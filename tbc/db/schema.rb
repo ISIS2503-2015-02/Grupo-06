@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819003204) do
+ActiveRecord::Schema.define(version: 20150819042324) do
 
   create_table "conductors", force: true do |t|
     t.string   "nombre"
     t.integer  "cedula"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mobibuses", force: true do |t|
+    t.string   "posicion"
+    t.string   "estado"
+    t.string   "kilms_ultima_revision"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
