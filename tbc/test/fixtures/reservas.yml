@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2015-08-19
+  direccionOrigen: MyString
+  direccionLlegada: MyString
+  estado: MyString
+  horaSalida: 2015-08-19 14:15:50
+  horaLlegada: 2015-08-19 14:15:50
+  ruta: MyString
+  distancia: 9.99
+
+two:
+  fecha: 2015-08-19
+  direccionOrigen: MyString
+  direccionLlegada: MyString
+  estado: MyString
+  horaSalida: 2015-08-19 14:15:50
+  horaLlegada: 2015-08-19 14:15:50
+  ruta: MyString
+  distancia: 9.99

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819084709) do
+ActiveRecord::Schema.define(version: 20150819191550) do
 
   create_table "conductors", force: true do |t|
     t.string   "nombre"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20150819084709) do
     t.string   "posicion"
     t.string   "estado"
     t.string   "kilms_ultima_revision"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reservas", force: true do |t|
+    t.date     "fecha"
+    t.string   "direccionOrigen"
+    t.string   "direccionLlegada"
+    t.string   "estado"
+    t.time     "horaSalida"
+    t.time     "horaLlegada"
+    t.string   "ruta"
+    t.decimal  "distancia"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :reservas
+
   #resources se encarga de manejar las rutas del CRUD
   resources :vcubs
   put 'vcubs/:id/posicion' => 'vcubs#cambiar_posicion'
