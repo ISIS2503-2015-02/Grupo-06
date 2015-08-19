@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :tranvia
+  put 'tranvia/:id/posicion'  => 'tranvia#cambiar_posicion'
+  put 'tranvia/:id/estado'  => 'tranvia#cambiar_estado'
+
+
   #resources se encarga de manejar las rutas del CRUD
   resources :mobibuses
   put 'mobibuses/:id/posicion'  => 'mobibuses#cambiar_posicion'

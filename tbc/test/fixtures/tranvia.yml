@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identificacion: 
+  linea: MyString
+  kilms_ultima_revision: 1.5
+  temperatura: 1.5
+  posicion: MyString
+  estado: MyString
+  boton_panico: false
+
+two:
+  identificacion: 
+  linea: MyString
+  kilms_ultima_revision: 1.5
+  temperatura: 1.5
+  posicion: MyString
+  estado: MyString
+  boton_panico: false
