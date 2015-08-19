@@ -78,7 +78,7 @@ class TranviaController < ApplicationController
   def emergencia
     @tranvium.update_attributes(boton_panico: true, estado: 'Emergencia')
     redirect_to (emergencia_create_path(id_vehiculo: @tranvium.id, tipo_vehiculo: 'Tranvia', magnitud: 4, posicion: @tranvium.posicion ))
-  end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,6 +1,5 @@
 class UsuariosController < ApplicationController
-  before_action :set_usuario, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_usuario,  only: [:show, :edit, :update, :destroy,:reservar]
   # GET /usuarios
   # GET /usuarios.json
   def index
@@ -69,6 +68,24 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :documento)
+      params.require(:usuario).permit(:nombre, :documento,:direccionLlegada)
     end
+
+ def res
+   @hola="jol"
+ end
+
+
+
+  def reservar
+
+    @hola= "holii"
+    @fecha= params["fecha"]
+    @direccionL= params["direccionLlegada"]
+    @direccionO=params["direccionOrigen"]
+    @hour= params["hora"]
+    redirect_to(new_reserva_path(fecha:0,direccionOrigen:"dfndl",direccionLlegada:"bdab",estado:"Creada",horaSalida:10, horaLlegada: 0, ruta: "indef", distancia: 0))
+  end
+
+
 end

@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   put 'mobibuses/:id/estado'  => 'mobibuses#cambiar_estado'
 
   resources :usuarios
-
+  get 'usuario/:id/reserva'=> 'usuarios#reservar'
+  post 'usuario/:id/reserva'=> 'usuarios#reservar',:as => 'reservar'
   resources :conductors
 
   # The priority is based upon order of creation: first created -> highest priority.
