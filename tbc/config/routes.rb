@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :mobibuses
+  put 'mobibuses/:id/posicion'  => 'mobibuses#cambiar_posicion'
 
   resources :usuarios
 

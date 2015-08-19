@@ -1,5 +1,5 @@
 class MobibusesController < ApplicationController
-  before_action :set_mobibus, only: [:show, :edit, :update, :destroy, :cambiar_posicion]
+  before_action :set_mobibus, only: [:show, :edit, :update, :destroy, :cambiar_posicion, :cambiar_estado]
 
   # GET /mobibuses
   # GET /mobibuses.json
@@ -64,6 +64,11 @@ class MobibusesController < ApplicationController
   #Devulve la posicion actual del vehiculo
   #PUT /mobibuses/{id}/posicion
   def cambiar_posicion
+    @mobibus.update_attribute(:posicion,params[:posicion])
+  end
+
+  def cambiar_estado
+    @mobibus.update_attribute(:posicion,params[:posicion])
   end
 
   private
