@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  #resources se encarga de manejar las rutas del CRUD
   resources :mobibuses
   put 'mobibuses/:id/posicion'  => 'mobibuses#cambiar_posicion'
+  put 'mobibuses/:id/estado'  => 'mobibuses#cambiar_estado'
 
   resources :usuarios
 

@@ -61,14 +61,16 @@ class MobibusesController < ApplicationController
     end
   end
 
-  #Devulve la posicion actual del vehiculo
-  #PUT /mobibuses/{id}/posicion
+  #Modifica la posicion del mobibus.
+  #PUT mobibuses/:id/posicion
   def cambiar_posicion
     @mobibus.update_attribute(:posicion,params[:posicion])
   end
 
+  #Modifica el estado del mobibus.
+  #PUT mobibuses/:id/estado
   def cambiar_estado
-    @mobibus.update_attribute(:posicion,params[:posicion])
+    @mobibus.update_attribute(:estado,params[:estado])
   end
 
   private
