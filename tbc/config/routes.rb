@@ -23,12 +23,16 @@ Rails.application.routes.draw do
   get 'holas/imprimierda'
 
 
-  resources :tranvia
+  resources :tranvia do
+    resources :reportets
+  end
   put 'tranvia/:id/posicion'  => 'tranvia#cambiar_posicion'
   put 'tranvia/:id/estado'  => 'tranvia#cambiar_estado'
   post 'tranvia/:id/emergencia' => 'tranvia#emergencia'
   
-  resources :mobibuses
+  resources :mobibuses do
+    resources :reportems
+  end
   put 'mobibuses/:id/posicion'  => 'mobibuses#cambiar_posicion'
   put 'mobibuses/:id/estado'  => 'mobibuses#cambiar_estado'
 
