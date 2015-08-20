@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+
+
+
+  get 'reservas/crear' => 'reserva#create', :as => 'reserva_cree'
+  get 'reserva/' => 'reserva#index'
+
   #resources se encarga de manejar las rutas del CRUD
   resources :vcubs
   put 'vcubs/:id/posicion' => 'vcubs#cambiar_posicion'
@@ -10,6 +16,7 @@ Rails.application.routes.draw do
   get 'emergencia/create'
   get 'emergencia/show'
   get 'emergencia/destroy'
+  get 'holas/imprimierda'
 
 
   resources :tranvia
@@ -22,7 +29,7 @@ Rails.application.routes.draw do
   put 'mobibuses/:id/estado'  => 'mobibuses#cambiar_estado'
 
   resources :usuarios
-
+  post 'usuarios/:id/reserva' => 'usuarios#reservar'
   resources :conductors
 
   # The priority is based upon order of creation: first created -> highest priority.

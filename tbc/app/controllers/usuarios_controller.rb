@@ -1,6 +1,5 @@
 class UsuariosController < ApplicationController
-  before_action :set_usuario, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_usuario,  only: [:show, :edit, :update, :destroy,:reservar]
   # GET /usuarios
   # GET /usuarios.json
   def index
@@ -25,7 +24,7 @@ class UsuariosController < ApplicationController
   # POST /usuarios.json
   def create
     @usuario = Usuario.new(usuario_params)
-
+    @vacio = "jiop"
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
@@ -60,7 +59,16 @@ class UsuariosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def reservar
 
+    @hola= "holii"
+    #@fecha= params["fecha"]
+    #@direccionL= params["direccionLlegada"]
+    #@direccionO=params["direccionOrigen"]
+    #@hour= params["hora"]
+
+    redirect_to(reserva_cree_path( estado:"nuevo",fecha:Time.now, direccionOrigen: "krgfnlnd", diraccionDestino:"fnkffd", horaSalida:Time.now, horaLlegada: Time.now + 6.hours, ruta: "ddjdj", distancia: 0, idUsuario: @usuario.id))
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario
@@ -71,4 +79,11 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:nombre, :documento)
     end
+
+
+
+
+
+
+
 end
