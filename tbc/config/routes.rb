@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
 
 
+  resources :reportets
+
+  resources :reportems
+
   get 'reservas/crear' => 'reserva#create', :as => 'reserva_cree'
   get 'reserva/' => 'reserva#index'
 

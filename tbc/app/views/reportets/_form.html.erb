@@ -1,0 +1,29 @@
+<%= form_for(@reportet) do |f| %>
+  <% if @reportet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reportet.errors.count, "error") %> prohibited this reportet from being saved:</h2>
+
+      <ul>
+      <% @reportet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :trayectos %><br>
+    <%= f.number_field :trayectos %>
+  </div>
+  <div class="field">
+    <%= f.label :tiempopromedio %><br>
+    <%= f.time_select :tiempopromedio %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

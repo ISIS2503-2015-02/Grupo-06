@@ -7,7 +7,7 @@ class VcubsController < ApplicationController
     @vcubs = Vcub.all
   end
 
-  # GET /vcubs/1 
+  # GET /vcubs/1
   # GET /vcubs/1.json
   def show
   end

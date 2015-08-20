@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2015-08-19
+  trayectos: 1
+  tiempopromedio: 2015-08-19 22:46:51
+
+two:
+  fecha: 2015-08-19
+  trayectos: 1
+  tiempopromedio: 2015-08-19 22:46:51
