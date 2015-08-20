@@ -72,6 +72,11 @@ class VcubsController < ApplicationController
   def cambiar_estado
     @vcub.update_attribute(:estado,params[:estado])
   end
+  #Modifica si el vcub está prestado
+  #PUT vcub/:id/prestada
+  def cambiar_prestada
+    @vcub.update_attribute(:prestada,params[:prestada])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
