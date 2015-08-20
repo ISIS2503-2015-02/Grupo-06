@@ -1,5 +1,5 @@
 class VcubsController < ApplicationController
-  before_action :set_vcub, only: [:show, :edit, :update, :destroy, :cambiar_estado, :cambiar_posicion]
+  before_action :set_vcub, only: [:show, :edit, :update, :destroy, :cambiar_estado, :cambiar_posicion,:cambiar_prestada]
 
   # GET /vcubs
   # GET /vcubs.json
