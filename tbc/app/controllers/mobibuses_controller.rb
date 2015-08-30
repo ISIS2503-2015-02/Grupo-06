@@ -79,7 +79,7 @@ class MobibusesController < ApplicationController
       @mobibus = Mobibus.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through. Never!
     def mobibus_params
       params.require(:mobibus).permit(:posicion, :estado, :kilms_ultima_revision)
     end
