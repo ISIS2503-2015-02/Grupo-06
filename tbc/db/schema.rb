@@ -62,12 +62,15 @@ ActiveRecord::Schema.define(version: 20150820034651) do
   end
 
   create_table "reportets", force: true do |t|
+    t.integer  "tranvias_id"
     t.date     "fecha"
     t.integer  "trayectos"
     t.time     "tiempopromedio"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reportets", ["tranvias_id"], name: "index_reportets_on_tranvias_id"
 
   create_table "reservas", force: true do |t|
     t.integer  "usuario_id"

@@ -27,15 +27,21 @@ class CreateTranvia < ActiveRecord::Migration
 
     create_table :conductor_tranvia do |t|
       t.belongs_to :tranvium, index: true
+      t.integer :idTranvia
       t.belongs_to :conductor, index: true
+      t.integer :idConductor
     end
 
-    create_table :conductor_mobibus do |t|
+    create_table :conductor_mobibuses do |t|
       t.belongs_to :mobibus, index: true
+      t.integer :idMobibus
       t.belongs_to :conductor, index: true
+      t.integer :idConductor
     end
 
     create_table :reportets do |t|
+      t.belongs_to :tranvium, index: true
+      t.integer :idTranvia
       t.date :fecha
       t.integer :trayectos
       t.time :tiempopromedio
@@ -44,6 +50,8 @@ class CreateTranvia < ActiveRecord::Migration
     end
 
     create_table :reportems do |t|
+      t.belongs_to :mobibus, index: true
+      t.integer :idMobibus
       t.date :fecha
       t.integer :trayectos
 
