@@ -10,7 +10,7 @@ class ReservaController < ApplicationController
   # POST /conductors.json
   def create
     fecha = Time.now
-    @reserva = Reserva.new(estado: params[:estado],fecha:fecha, direccion_salida: params[:direccionOrigen], direccion_llegada: params[:direccionDestino], hora_de_salida:  params[:horaSalida], hora_de_llegada: params[:horaLlegada], ruta: params[:ruta], distancia: params[:distancia], idUsuario: params[:idUsuario], nombreUsuario: params[:nombreUsuario] )
+    @reserva = Reserva.new(estado: params[:estado],fecha:fecha, direccion_salida: params[:direccion_salida], direccion_llegada: params[:direccion_llegada], hora_de_salida:  params[:horaSalida], hora_de_llegada: params[:horaLlegada], ruta: params[:ruta], distancia: params[:distancia], idUsuario: params[:idUsuario], nombreUsuario: params[:nombreUsuario] )
 
     respond_to do |format|
       if @reserva.save

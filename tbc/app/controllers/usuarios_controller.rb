@@ -64,13 +64,13 @@ class UsuariosController < ApplicationController
   # POST /usuarios/.json
   def reservar
     @id = Usuario.__id__
-    ruta= "Esta fue la maravillosa ruta"
+    laRuta= "Esta fue la maravillosa ruta"
     direccionL= params["direccionLlegada"]
     direccionO= params["direccionOrigen"]
     tiempo = Time.now
     horaS = tiempo.hour
     horaL = horaS+6
-    redirect_to(reserva_cree_path( estado: "nuevo",fecha: tiempo, direccion_llegada: direccionO, direccion_salida:direccionL, horaSalida: horaS, horaLlegada: horaL, ruta: ruta, distancia: 0, idUsuario: @id, nombreUsuario: @usuario.nombre))
+    redirect_to(reserva_cree_path( estado: "nuevo",fecha: tiempo, direccion_llegada: direccionO, direccion_salida: direccionL, horaSalida: horaS, horaLlegada: horaL, ruta: laRuta, distancia: 0, idUsuario: @id, nombreUsuario: @usuario.nombre))
   end
   private
     # Use callbacks to share common setup or constraints between actions.
