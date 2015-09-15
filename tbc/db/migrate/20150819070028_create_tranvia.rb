@@ -25,14 +25,14 @@ class CreateTranvia < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :conductor_tranvia do |t|
+    create_table :conductortranvia do |t|
       t.belongs_to :tranvium, index: true
       t.integer :idTranvia
       t.belongs_to :conductor, index: true
       t.integer :idConductor
     end
 
-    create_table :conductor_mobibuses do |t|
+    create_table :conductormobibuses do |t|
       t.belongs_to :mobibus, index: true
       t.integer :idMobibus
       t.belongs_to :conductor, index: true
