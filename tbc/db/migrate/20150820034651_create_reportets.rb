@@ -1,11 +1,5 @@
 class CreateReportets < ActiveRecord::Migration
   def change
-    create_table :reportets do |t|
-      t.date :fecha
-      t.integer :trayectos
-      t.time :tiempopromedio
-
-      t.timestamps
-    end
+    #Se encuentra en tranvía, para asegurar el orden de la creación de la tablas.
   end
 end
