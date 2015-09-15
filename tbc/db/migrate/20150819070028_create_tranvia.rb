@@ -8,8 +8,31 @@ class CreateTranvia < ActiveRecord::Migration
       t.string :posicion
       t.string :estado
       t.boolean :boton_panico
+      t.timestamps
+    end
+
+    create_table :mobibuses do |t|
+      t.string :posicion
+      t.string :estado
+      t.string :kilms_ultima_revision
 
       t.timestamps
+    end
+
+    create_table :conductors do |t|
+      t.string :nombre
+      t.integer :cedula
+      t.timestamps
+    end
+
+    create_table :conductor_tranvia do |t|
+      t.belongs_to :tranvium, index: true
+      t.belongs_to :conductor, index: true
+    end
+
+    create_table :conductor_mobibus do |t|
+      t.belongs_to :mobibus, index: true
+      t.belongs_to :conductor, index: true
     end
   end
 end

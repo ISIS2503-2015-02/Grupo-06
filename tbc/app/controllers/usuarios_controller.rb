@@ -59,15 +59,18 @@ class UsuariosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # POST /usuarios/reservar
+  # POST /usuarios/.json
   def reservar
-
-    @hola= "holii"
-    #@fecha= params["fecha"]
-    #@direccionL= params["direccionLlegada"]
-    #@direccionO=params["direccionOrigen"]
-    #@hour= params["hora"]
-
-    redirect_to(reserva_cree_path( estado:"nuevo",fecha:Time.now, direccionOrigen: "krgfnlnd", diraccionDestino:"fnkffd", horaSalida:Time.now, horaLlegada: Time.now + 6.hours, ruta: "ddjdj", distancia: 0, idUsuario: @usuario.id))
+    @id = Usuario.__id__
+    ruta= "Esta fue la maravillosa ruta"
+    direccionL= params["direccionLlegada"]
+    direccionO= params["direccionOrigen"]
+    tiempo = Time.now
+    horaS = tiempo.hour
+    horaL = horaS+6
+    redirect_to(reserva_cree_path( estado: "nuevo",fecha: tiempo, direccion_llegada: direccionO, direccion_salida:direccionL, horaSalida: horaS, horaLlegada: horaL, ruta: ruta, distancia: 0, idUsuario: @id, nombreUsuario: @usuario.nombre))
   end
   private
     # Use callbacks to share common setup or constraints between actions.

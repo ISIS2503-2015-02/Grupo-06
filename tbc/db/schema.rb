@@ -13,6 +13,22 @@
 
 ActiveRecord::Schema.define(version: 20150820034651) do
 
+  create_table "conductor_mobibus", force: true do |t|
+    t.integer "mobibus_id"
+    t.integer "conductor_id"
+  end
+
+  add_index "conductor_mobibus", ["conductor_id"], name: "index_conductor_mobibus_on_conductor_id"
+  add_index "conductor_mobibus", ["mobibus_id"], name: "index_conductor_mobibus_on_mobibus_id"
+
+  create_table "conductor_tranvia", force: true do |t|
+    t.integer "tranvium_id"
+    t.integer "conductor_id"
+  end
+
+  add_index "conductor_tranvia", ["conductor_id"], name: "index_conductor_tranvia_on_conductor_id"
+  add_index "conductor_tranvia", ["tranvium_id"], name: "index_conductor_tranvia_on_tranvium_id"
+
   create_table "conductors", force: true do |t|
     t.string   "nombre"
     t.integer  "cedula"
@@ -54,18 +70,22 @@ ActiveRecord::Schema.define(version: 20150820034651) do
   end
 
   create_table "reservas", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "idUsuario"
+    t.string   "nombreUsuario"
     t.datetime "fecha"
     t.time     "hora_de_salida"
     t.time     "hora_de_llegada"
     t.string   "direccion_salida"
-    t.string   "diraccion_llegada"
+    t.string   "direccion_llegada"
     t.string   "estado"
     t.string   "ruta"
-    t.decimal  "distancia"
-    t.integer  "id_usuario"
+    t.float    "distancia"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reservas", ["usuario_id"], name: "index_reservas_on_usuario_id"
 
   create_table "tranvia", force: true do |t|
     t.string   "identificacion"
@@ -90,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150820034651) do
     t.string   "posicion"
     t.string   "estado"
     t.boolean  "prestada"
+    t.integer  "id_usuario"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
