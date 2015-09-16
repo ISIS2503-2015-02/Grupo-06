@@ -1,5 +1,5 @@
 class MobibusesController < ApplicationController
-  before_action :set_mobibus, only: [:show, :edit, :update, :destroy, :cambiar_posicion, :cambiar_estado]
+  before_action :set_mobibus, only: [:show, :edit, :update, :destroy, :cambiar_posicion, :cambiar_estado, :reporte]
 
   # GET /mobibuses
   # GET /mobibuses.json
@@ -71,6 +71,14 @@ class MobibusesController < ApplicationController
   #PUT mobibuses/:id/estado
   def cambiar_estado
     @mobibus.update_attribute(:estado,params[:estado])
+  end
+
+  #POST mobibus/:id/reportar
+  def reporte
+    @id =  @mobibus.id
+    trayectos = params["trayectos"]
+    fecha = Time.now
+    redirect_to(reportems_crear_path(idMobibus: @id, fecha: fecha , trayectos: trayectos))
   end
 
   private

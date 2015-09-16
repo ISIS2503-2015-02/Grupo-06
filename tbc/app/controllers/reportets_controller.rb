@@ -11,7 +11,7 @@ class ReportetsController < ApplicationController
 
   def create
     @reportet = Reportet.new
-    @reportet.update_attributes(idTranvia: params[:idTranvia], fecha: params[:fecha], tiempopromedio: params[:tiempoPromedio])
+    @reportet.update_attributes(idTranvia: params[:idTranvia], fecha: params[:fecha], tiempopromedio: params[:tiempoPromedio], trayectos: params[:trayectos])
     @reportet.save
     redirect_to reportet_path
   end

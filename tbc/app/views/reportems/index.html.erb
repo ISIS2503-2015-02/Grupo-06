@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>IDMobibus</th>
       <th>Fecha</th>
       <th>Trayectos</th>
       <th colspan="3"></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @reportems.each do |reportem| %>
       <tr>
+        <td><%= reportem.idMobibus %></td>
         <td><%= reportem.fecha %></td>
         <td><%= reportem.trayectos %></td>
         <td><%= link_to 'Show', reportem %></td>

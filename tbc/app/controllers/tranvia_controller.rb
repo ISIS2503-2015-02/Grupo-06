@@ -88,9 +88,9 @@ class TranviaController < ApplicationController
   #POST tranvia/:id/reportar
   def reporte
     tiempoPromedio = params["tiempoPromedio"]
-    trayecto = params["trayecto"]
+    trayectos = params["trayectos"]
     fecha = Time.now
-    redirect_to(reportets_crear_path(idTranvia: @tranvium.id, fecha: fecha , trayecto: trayecto, tiempoPromedio: tiempoPromedio))
+    redirect_to(reportets_crear_path(idTranvia: @tranvium.id, fecha: fecha , trayectos: trayectos, tiempoPromedio: tiempoPromedio))
   end
 
   private

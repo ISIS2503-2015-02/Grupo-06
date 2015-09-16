@@ -33,23 +33,28 @@ Rails.application.routes.draw do
   get 'reportets/' => 'reportets#index', :as =>'reportet'
   get 'reportets/create'
 
-  resources :reportets
+  get 'reportems/' => 'reportems#index', :as =>'reportem'
+  get 'reportems/create'
 
-  resources :reportems
+
   
   resources :mobibuses do
     resources :reportems
   end
   put 'mobibuses/:id/posicion'  => 'mobibuses#cambiar_posicion'
   put 'mobibuses/:id/estado'  => 'mobibuses#cambiar_estado'
-
+  post 'mobibuses/:id/reportar' => 'mobibuses#reporte'
   resources :usuarios
   post 'usuarios/:id/reserva' => 'usuarios#reservar'
   resources :conductors
 
 
   get 'reportets/create' => 'reportets#create', :as => 'reportets_crear'
+  get 'reportems/create' => 'reportems#create', :as => 'reportems_crear'
 
+  resources :reportets
+
+  resources :reportems
 
 
   # The priority is based upon order of creation: first created -> highest priority.
