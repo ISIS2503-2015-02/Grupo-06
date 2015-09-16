@@ -64,7 +64,6 @@ class UsuariosController < ApplicationController
   # POST /usuarios/.json
   def reservar
     @id = @usuario.id
-    laRuta= params["ruta"]    @id = @usuario.id
     laRuta= params["ruta"]
     direccionL= params["direccionLlegada"]
     direccionO= params["direccionOrigen"]
