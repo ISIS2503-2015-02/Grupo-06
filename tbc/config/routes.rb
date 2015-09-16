@@ -46,8 +46,11 @@ Rails.application.routes.draw do
   post 'mobibuses/:id/reportar' => 'mobibuses#reporte'
   resources :usuarios
   post 'usuarios/:id/reserva' => 'usuarios#reservar'
+
+
   resources :conductors
 
+  post 'conductors/:id/asignarm' => 'conductors#asignarm'
 
   get 'reportets/create' => 'reportets#create', :as => 'reportets_crear'
   get 'reportems/create' => 'reportems#create', :as => 'reportems_crear'
