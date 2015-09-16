@@ -15,9 +15,7 @@ ActiveRecord::Schema.define(version: 20150915232730) do
 
   create_table "conductormobibuses", force: true do |t|
     t.integer "mobibus_id"
-    t.integer "idMobibus"
     t.integer "conductor_id"
-    t.integer "idConductor"
   end
 
   add_index "conductormobibuses", ["conductor_id"], name: "index_conductormobibuses_on_conductor_id"
@@ -32,9 +30,7 @@ ActiveRecord::Schema.define(version: 20150915232730) do
 
   create_table "conductortranvia", force: true do |t|
     t.integer "tranvium_id"
-    t.integer "idTranvia"
     t.integer "conductor_id"
-    t.integer "idConductor"
   end
 
   add_index "conductortranvia", ["conductor_id"], name: "index_conductortranvia_on_conductor_id"
@@ -60,7 +56,6 @@ ActiveRecord::Schema.define(version: 20150915232730) do
 
   create_table "reportems", force: true do |t|
     t.integer  "mobibus_id"
-    t.integer  "idMobibus"
     t.date     "fecha"
     t.integer  "trayectos"
     t.datetime "created_at"
@@ -71,7 +66,6 @@ ActiveRecord::Schema.define(version: 20150915232730) do
 
   create_table "reportets", force: true do |t|
     t.integer  "tranvium_id"
-    t.integer  "idTranvia"
     t.date     "fecha"
     t.integer  "trayectos"
     t.time     "tiempopromedio"
@@ -83,7 +77,6 @@ ActiveRecord::Schema.define(version: 20150915232730) do
 
   create_table "reservas", force: true do |t|
     t.integer  "usuario_id"
-    t.integer  "idUsuario"
     t.string   "nombreUsuario"
     t.datetime "fecha"
     t.time     "hora_de_salida"

@@ -8,7 +8,6 @@ class CreateUsuarios < ActiveRecord::Migration
     end
     create_table :reservas do |t|
       t.belongs_to :usuario, index: true
-      t.integer :idUsuario
       t.string :nombreUsuario
       t.datetime :fecha
       t.time :hora_de_salida
