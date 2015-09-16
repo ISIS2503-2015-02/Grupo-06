@@ -4,7 +4,6 @@ class CreateVcubs < ActiveRecord::Migration
       t.string :posicion
       t.string :estado
       t.boolean :prestada
-      t.integer :id_usuario
 
       t.timestamps
     end
