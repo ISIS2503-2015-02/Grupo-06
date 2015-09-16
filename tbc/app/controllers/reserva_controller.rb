@@ -1,17 +1,27 @@
 class ReservaController < ApplicationController
 
-  before_action :set_reserva, only: [:show]
+  before_action :set_reserva, only: [:show, :edit, :update, :destroy]
 
   def index
     @reserva = Reserva.all
   end
 
+  # POST /conductors
+  # POST /conductors.json
   def create
-    @reserva = Reserva.new
     fecha = Time.now
-    @reserva.update_attributes(estado: params[:estado],fecha:fecha, direccion_salida: params[:direccionOrigen], diraccion_llegada: params[:direccionDestino], hora_de_salida:  params[:horaSalida], hora_de_llegada: params[:horaLlegada], ruta: params[:ruta], distancia: params[:distancia], id_usuario: params[:idUsuario]  )
-    @reserva.save
-    redirect_to reserva_path
+    @reserva = Reserva.new(estado: params[:estado],fecha:fecha, direccion_salida: params[:direccion_salida], direccion_llegada: params[:direccion_llegada], hora_de_salida:  params[:horaSalida], hora_de_llegada: params[:horaLlegada], ruta: params[:ruta], distancia: params[:distancia], idUsuario: params[:idUsuario], nombreUsuario: params[:nombreUsuario] )
+
+    respond_to do |format|
+      if @reserva.save
+        format.html { redirect_to @reserva, notice: 'Reserva was successfully created.' }
+        format.json { render :show, status: :created, location: @reserva }
+      else
+        format.html { render :new }
+        format.json { render json: @reserva.errors, status: :unprocessable_entity }
+      end
+    end
+
 
   end
 

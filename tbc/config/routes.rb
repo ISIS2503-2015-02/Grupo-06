@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'emergencia/create'
   get 'emergencia/show'
   get 'emergencia/destroy'
-  get 'holas/imprimierda'
 
 
   resources :tranvia do

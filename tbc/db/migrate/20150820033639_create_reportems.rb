@@ -1,10 +1,5 @@
 class CreateReportems < ActiveRecord::Migration
   def change
-    create_table :reportems do |t|
-      t.date :fecha
-      t.integer :trayectos
-
-      t.timestamps
-    end
+    #Se encuentra en tranvía, para asegurar el orden de la creación de la tablas.
   end
 end

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820034651) do
+ActiveRecord::Schema.define(version: 20150915232730) do
+
+  create_table "conductormobibuses", force: true do |t|
+    t.integer "mobibus_id"
+    t.integer "idMobibus"
+    t.integer "conductor_id"
+    t.integer "idConductor"
+  end
+
+  add_index "conductormobibuses", ["conductor_id"], name: "index_conductormobibuses_on_conductor_id"
+  add_index "conductormobibuses", ["mobibus_id"], name: "index_conductormobibuses_on_mobibus_id"
 
   create_table "conductors", force: true do |t|
     t.string   "nombre"
@@ -19,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150820034651) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "conductortranvia", force: true do |t|
+    t.integer "tranvium_id"
+    t.integer "idTranvia"
+    t.integer "conductor_id"
+    t.integer "idConductor"
+  end
+
+  add_index "conductortranvia", ["conductor_id"], name: "index_conductortranvia_on_conductor_id"
+  add_index "conductortranvia", ["tranvium_id"], name: "index_conductortranvia_on_tranvium_id"
 
   create_table "emergencia", force: true do |t|
     t.integer  "magnitud"
@@ -39,13 +59,19 @@ ActiveRecord::Schema.define(version: 20150820034651) do
   end
 
   create_table "reportems", force: true do |t|
+    t.integer  "mobibus_id"
+    t.integer  "idMobibus"
     t.date     "fecha"
     t.integer  "trayectos"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "reportems", ["mobibus_id"], name: "index_reportems_on_mobibus_id"
+
   create_table "reportets", force: true do |t|
+    t.integer  "tranvium_id"
+    t.integer  "idTranvia"
     t.date     "fecha"
     t.integer  "trayectos"
     t.time     "tiempopromedio"
@@ -53,19 +79,25 @@ ActiveRecord::Schema.define(version: 20150820034651) do
     t.datetime "updated_at"
   end
 
+  add_index "reportets", ["tranvium_id"], name: "index_reportets_on_tranvium_id"
+
   create_table "reservas", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "idUsuario"
+    t.string   "nombreUsuario"
     t.datetime "fecha"
     t.time     "hora_de_salida"
     t.time     "hora_de_llegada"
     t.string   "direccion_salida"
-    t.string   "diraccion_llegada"
+    t.string   "direccion_llegada"
     t.string   "estado"
     t.string   "ruta"
-    t.decimal  "distancia"
-    t.integer  "id_usuario"
+    t.float    "distancia"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reservas", ["usuario_id"], name: "index_reservas_on_usuario_id"
 
   create_table "tranvia", force: true do |t|
     t.string   "identificacion"
@@ -90,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150820034651) do
     t.string   "posicion"
     t.string   "estado"
     t.boolean  "prestada"
+    t.integer  "id_usuario"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
