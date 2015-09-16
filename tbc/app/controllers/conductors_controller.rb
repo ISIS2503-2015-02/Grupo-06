@@ -64,12 +64,12 @@ class ConductorsController < ApplicationController
   # POST /conductors/1
   # POST /conductors/1.json
   def asignarm
-    @idmobi = params[:idMobibus]
-    @id =  @conductor.id
-    mobibus_id = Mobibus.find(@idmobi)
+    idmobi = params[:idMobibus]
+    id =  @conductor.id
     @conductormobibus = Conductormobibus.new
-    @conductormobibus.update_attributes(mobibus_id: mobibus_id, conductor_id: params[:@id])
+    @conductormobibus.update_attributes(mobibus_id: idmobi, conductor_id: id)
     @conductormobibus.save
+    @conductormobibuses = Conductormobibus.all
   end
 
   private
