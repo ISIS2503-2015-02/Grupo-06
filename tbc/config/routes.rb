@@ -52,6 +52,8 @@ Rails.application.routes.draw do
 
   post 'conductors/:id/asignarm' => 'conductors#asignarm'
 
+  post 'conductors/:id/asignart' => 'conductors#asignart'
+
   get 'reportets/create' => 'reportets#create', :as => 'reportets_crear'
   get 'reportems/create' => 'reportems#create', :as => 'reportems_crear'
 

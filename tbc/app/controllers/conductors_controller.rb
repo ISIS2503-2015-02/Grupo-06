@@ -1,5 +1,5 @@
 class ConductorsController < ApplicationController
-  before_action :set_conductor, only: [:show, :edit, :update, :destroy, :asignarm]
+  before_action :set_conductor, only: [:show, :edit, :update, :destroy, :asignarm, :asignart]
 
   # GET /conductors
   # GET /conductors.json
@@ -70,6 +70,15 @@ class ConductorsController < ApplicationController
     @conductormobibus.update_attributes(mobibus_id: idmobi, conductor_id: id)
     @conductormobibus.save
     @conductormobibuses = Conductormobibus.all
+  end
+
+  def asignart
+    idtranvi = params[:idTranvia]
+    id =  @conductor.id
+    @conductortranvia = Conductortranvia.new
+    @conductortranvia.update_attributes(tranvium_id: idtranvi, conductor_id: id)
+    @conductortranvia.save
+    @conductortranvia = Conductortranvia.all
   end
 
   private

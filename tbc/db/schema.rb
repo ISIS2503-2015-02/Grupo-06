@@ -21,13 +21,6 @@ ActiveRecord::Schema.define(version: 20150916101711) do
   add_index "conductormobibuses", ["conductor_id"], name: "index_conductormobibuses_on_conductor_id"
   add_index "conductormobibuses", ["mobibus_id"], name: "index_conductormobibuses_on_mobibus_id"
 
-  create_table "conductors", force: true do |t|
-    t.string   "nombre"
-    t.integer  "cedula"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "conductortranvia", force: true do |t|
     t.integer "tranvium_id"
     t.integer "conductor_id"
@@ -35,6 +28,15 @@ ActiveRecord::Schema.define(version: 20150916101711) do
 
   add_index "conductortranvia", ["conductor_id"], name: "index_conductortranvia_on_conductor_id"
   add_index "conductortranvia", ["tranvium_id"], name: "index_conductortranvia_on_tranvium_id"
+
+  create_table "conductors", force: true do |t|
+    t.string   "nombre"
+    t.integer  "cedula"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+
 
   create_table "emergencia", force: true do |t|
     t.integer  "magnitud"
