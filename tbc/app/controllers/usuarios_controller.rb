@@ -20,6 +20,10 @@ class UsuariosController < ApplicationController
   def edit
   end
 
+  def access
+
+  end
+
   # POST /usuarios
   # POST /usuarios.json
   def create
@@ -80,7 +84,7 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :correo, :documento)
+      params.require(:usuario).permit(:nombre, :documento, :correo, :contrasenia)
     end
 
 end
