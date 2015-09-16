@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Nombre</th>
+      <th>Correo</th>
       <th>Documento</th>
       <th colspan="3"></th>
     </tr>
@@ -13,6 +14,7 @@
     <% @usuarios.each do |usuario| %>
       <tr>
         <td><%= usuario.nombre %></td>
+        <td><%= usuario.correo %></td>
         <td><%= usuario.documento %></td>
         <td><%= usuario.id %></td>
         <td><%= link_to 'Show', usuario %></td>
