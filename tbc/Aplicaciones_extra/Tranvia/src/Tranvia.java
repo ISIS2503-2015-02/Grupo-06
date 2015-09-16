@@ -1,45 +1,46 @@
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-/**
- * http://stackoverflow.com/questions/4205980/java-sending-http-parameters-via-post-method-easily
- * @author Grupo 6 Arquitectura y diseño de software
- *
- */
+ /**
+  *  @author Grupo 6 Arquitectura y diseño de software
+  */
 
-public class Mobibus 
+public class Tranvia 
 {
-
+	
 	//-----------------------------------------------
 	// Constantes
 	//----------------------------------------------
+	
 	private final static String COMANDO_CAMBIAR_ESTADO="estado";
 	
 	private final static String COMANDO_CAMBIAR_POSICION="posicion";
+	
+	private final static String COMANDO_REPORTAR_EMERGENCIA="emergencia";
 	
 	private final static String HTTP="http://";
 	
 	private final static String LOCALHOST_RAILS="127.0.0.1:3000";
 	
-	private final static String URL_GET ="/mobibuses.json";
+	private final static String URL_GET ="/tranvia.json";
 	
-	private final static String URL_PUT_ESTADO_PARTE_1="/mobibuses/";
+	private final static String URL_PUT_ESTADO_PARTE_1="/tranvia/";
 	
 	private final static String URL_PUT_ESTADO_PARTE_2="/estado.json";
 	
-	private final static String URL_PUT_POSICION_PARTE_1="/mobibuses/";
+	private final static String URL_PUT_POSICION_PARTE_1="/tranvia/";
 	
 	private final static String URL_PUT_POSICION_PARTE_2="/posicion.json";
 	
-
+	private final static String URL_POST_EMERGENCIA_PARTE_1="/tranvia/";
+	
+	private final static String URL_POST_EMERGENCIA_PARTE_2="/emergencia";
+	
+	
 	//-----------------------------------------------
 	// Atributos
 	//----------------------------------------------
@@ -50,21 +51,21 @@ public class Mobibus
 	//-----------------------------------------------
 	// Métodos
 	//----------------------------------------------
-	
+
 	/**
 	 * Constructor de la clase.
 	 */
-	public Mobibus(String idP)
+	public Tranvia(String idP)
 	{
 		id=idP;
 	}
-	
+
 	/**
 	 * Envía una petición GET al servidor. Imprime la respuesta.
 	 * @throws Exception 
 	 */
 	private void enviarGet() throws Exception
-	{
+	{	
 		
 		String url =  HTTP+LOCALHOST_RAILS+URL_GET;
 		URL query= new URL(url);
@@ -91,11 +92,9 @@ public class Mobibus
 		
 		System.out.println(respuesta.toString());
 	}
-
-	
 	
 	/**
-	 * Envia una peticion PUT que cambia el estado del mobibus.
+	 * Envia una peticion PUT que cambia el estado del tranvia.
 	 * @param nuevoEstado El nuevo estado
 	 * @throws Exception 
 	 */
@@ -144,9 +143,8 @@ public class Mobibus
 		
 	}
 	
-	
 	/**
-	 * Envia una peticion PUT que cambia la posicion del mobibus.
+	 * Envia una peticion PUT que cambia la posicion del Tranvia.
 	 * @param nuevoEstado El nuevo estado
 	 * @throws Exception 
 	 */
@@ -193,8 +191,59 @@ public class Mobibus
 		System.out.println(respuesta.toString());
 		
 	}
-
-
+	
+	
+	/**
+	 * Envia una peticion POST que crea una nueva emergencia para el Tranvia.
+	 * @param nuevoEstado El nuevo estado
+	 * @throws Exception 
+	 */
+	private void reportarEmergencia() throws Exception
+	{
+		String url =  HTTP + LOCALHOST_RAILS + URL_POST_EMERGENCIA_PARTE_1 + id + URL_POST_EMERGENCIA_PARTE_2;
+		
+		//No se necesitan parámetros
+		String parametros = "";
+		byte[] postData   = parametros.getBytes( StandardCharsets.UTF_8 );
+		int postDataLength = postData.length;
+		
+		URL query= new URL(url);
+		HttpURLConnection conexion =  (HttpURLConnection) query.openConnection();
+		conexion.setDoOutput(true);
+		conexion.setInstanceFollowRedirects( true ); // Porque si todo sale bien la petición debe ser redireccionada
+		conexion.setRequestMethod("POST");
+		conexion.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+		conexion.setRequestProperty( "charset", "utf-8");
+		conexion.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
+		
+		try( DataOutputStream wr = new DataOutputStream( conexion.getOutputStream())) 
+		{
+			wr.write( postData );
+		}
+		
+		int codigoRespuesta = conexion.getResponseCode();
+		System.out.println("\n Enviando peticion 'POST' al URL : " + url);
+		System.out.println("Codigo Respuesta: " + codigoRespuesta);
+		
+		// La respuesta se lee por medio de un buffered reader
+		BufferedReader in = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+		String input="";
+		// El string buffer es una estructura de datos que hace más eficiente la concatenación de Strings.
+		StringBuffer respuesta = new StringBuffer();
+		
+		while ((input = in.readLine()) != null) 
+		{
+			respuesta.append(input);
+		}
+		
+		in.close();
+		
+		String resp = respuesta.toString();
+		System.out.println(resp);
+	
+	}
+	
+	
 	//-----------------------------------------------
 	// Método main
 	//----------------------------------------------
@@ -207,17 +256,18 @@ public class Mobibus
 	{
 		
 		//Deben haber exactamente tres parámetros: id, comando y nuevo valor.
-		if(args.length != 3)
+		if(args.length != 3 && args.length != 2)
 		{
-			System.err.println("Uso: java Mobibus <id> <comando> <nuevo Valor>");
-			System.out.println("comandos: " + COMANDO_CAMBIAR_ESTADO +"," + COMANDO_CAMBIAR_POSICION);
+			System.err.println("Uso: java Tranvia <id> <comando> <nuevo Valor>");
+			System.err.println("o java Tranvia <id> "+COMANDO_REPORTAR_EMERGENCIA);
+			System.out.println("comandos: " + COMANDO_CAMBIAR_ESTADO +"," + COMANDO_CAMBIAR_POSICION +", "+ COMANDO_REPORTAR_EMERGENCIA);
 			System.exit(1);
 		}
 		
 		//args[0] = id del vehículo
 		//args[1] = comando. 
 		//args[2] = el nuevo valor (Eje: EMERGENCIA, o 123123[es una posicion])
-		Mobibus instancia = new Mobibus(args[0]);
+		Tranvia instancia = new Tranvia(args[0]);
 		
 		try 
 		{
@@ -226,6 +276,9 @@ public class Mobibus
 			
 			if(args[1].equals(COMANDO_CAMBIAR_POSICION)) 
 				instancia.cambiarPosicion(args[2]);
+			
+			if(args[1].equals(COMANDO_REPORTAR_EMERGENCIA)) 
+				instancia.reportarEmergencia();
 			
 			
 			//Envia una peticion GET
@@ -240,3 +293,5 @@ public class Mobibus
 		
 	}
 }
+
+
