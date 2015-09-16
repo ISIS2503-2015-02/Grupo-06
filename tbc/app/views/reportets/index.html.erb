@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>IDTranvia</th>
       <th>Fecha</th>
       <th>Trayectos</th>
       <th>Tiempopromedio</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @reportets.each do |reportet| %>
       <tr>
+        <td><%= reportet.idTranvia %></td>
         <td><%= reportet.fecha %></td>
         <td><%= reportet.trayectos %></td>
         <td><%= reportet.tiempopromedio %></td>

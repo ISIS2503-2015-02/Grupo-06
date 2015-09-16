@@ -2,16 +2,12 @@ Rails.application.routes.draw do
 
 
 
-
-  resources :reportets
-
-  resources :reportems
-
   get 'reservas/crear' => 'reserva#create', :as => 'reserva_cree'
   get 'reserva/' => 'reserva#index'
 
   #resources se encarga de manejar las rutas del CRUD
   resources :vcubs
+  #no tocar estas 3 rutas
   put 'vcubs/:id/posicion' => 'vcubs#cambiar_posicion'
   put 'vcubs/:id/estado' => 'vcubs#cambiar_estado'
   put 'vcubs/:id/prestada' => 'vcubs#cambiar_prestada'
@@ -23,11 +19,23 @@ Rails.application.routes.draw do
 
 
   resources :tranvia do
+
     resources :reportets
   end
-  put 'tranvia/:id/posicion'  => 'tranvia#cambiar_posicion'
-  put 'tranvia/:id/estado'  => 'tranvia#cambiar_estado'
+
+  put 'tranvia/:id/posicion' => 'tranvia#cambiar_posicion'
+  put 'tranvia/:id/estado' => 'tranvia#cambiar_estado'
   post 'tranvia/:id/emergencia' => 'tranvia#emergencia'
+  post 'tranvia/:id/reportar' => 'tranvia#reporte'
+
+
+
+  get 'reportets/' => 'reportets#index', :as =>'reportet'
+  get 'reportets/create'
+
+  resources :reportets
+
+  resources :reportems
   
   resources :mobibuses do
     resources :reportems
@@ -38,6 +46,11 @@ Rails.application.routes.draw do
   resources :usuarios
   post 'usuarios/:id/reserva' => 'usuarios#reservar'
   resources :conductors
+
+
+  get 'reportets/create' => 'reportets#create', :as => 'reportets_crear'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

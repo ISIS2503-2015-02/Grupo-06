@@ -60,11 +60,11 @@ class UsuariosController < ApplicationController
     end
   end
 
-  # POST /usuarios/reservar
+  # POST /usuarios/1/reservar
   # POST /usuarios/.json
   def reservar
     @id = @usuario.id
-    laRuta= "Esta fue la maravillosa ruta"
+    laRuta= params["ruta"]
     direccionL= params["direccionLlegada"]
     direccionO= params["direccionOrigen"]
     tiempo = Time.now
@@ -82,11 +82,5 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:nombre, :documento)
     end
-
-
-
-
-
-
 
 end

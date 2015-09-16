@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Identificacion</th>
       <th>Linea</th>
       <th>Kilms ultima revision</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @tranvia.each do |tranvium| %>
       <tr>
+        <td><%= tranvium.id %></td>
         <td><%= tranvium.identificacion %></td>
         <td><%= tranvium.linea %></td>
         <td><%= tranvium.kilms_ultima_revision %></td>
