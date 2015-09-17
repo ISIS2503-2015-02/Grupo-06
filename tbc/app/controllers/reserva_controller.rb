@@ -4,6 +4,7 @@ class ReservaController < ApplicationController
 
   def index
     @reserva = Reserva.all
+    render :json => @reserva
   end
 
   # POST /conductors

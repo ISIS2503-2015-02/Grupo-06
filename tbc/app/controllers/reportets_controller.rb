@@ -3,6 +3,7 @@ class ReportetsController < ApplicationController
 
   def index
     @reportets = Reportet.all
+    render :json => @reportets
   end
 
   def new

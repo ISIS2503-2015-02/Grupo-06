@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   put 'vcubs/:id/estado' => 'vcubs#cambiar_estado'
   put 'vcubs/:id/prestada' => 'vcubs#cambiar_prestada'
 
+  get 'administrador' => 'usuarios#administrador'
+
   get 'emergencia/' => 'emergencia#index'
   get 'emergencia/create'
   get 'emergencia/show'

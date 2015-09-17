@@ -3,6 +3,7 @@ class EmergenciaController < ApplicationController
 
   def index
     @emergencias = Emergencia.all
+    render :json => @emergencias
   end
 
   def create

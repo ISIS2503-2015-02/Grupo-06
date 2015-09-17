@@ -3,6 +3,7 @@ class ReportemsController < ApplicationController
 
   def index
     @reportems = Reportem.all
+    render :json => @reportems
   end
 
   def new

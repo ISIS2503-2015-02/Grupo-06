@@ -5,6 +5,7 @@ class VcubsController < ApplicationController
   # GET /vcubs.json
   def index
     @vcubs = Vcub.all
+    render :json => @vcubs
   end
 
   # GET /vcubs/1
