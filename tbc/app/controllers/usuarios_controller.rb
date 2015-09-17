@@ -4,6 +4,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios.json
   def index
     @usuarios = Usuario.all
+    render :json => @usuarios
   end
 
   # GET /usuarios/1
@@ -21,7 +22,9 @@ class UsuariosController < ApplicationController
   end
 
   def access
+  end
 
+  def administrador
   end
 
   # POST /usuarios

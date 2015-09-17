@@ -5,6 +5,7 @@ class ConductorsController < ApplicationController
   # GET /conductors.json
   def index
     @conductors = Conductor.all
+    render :json => @conductors
   end
 
   # GET /conductors/1

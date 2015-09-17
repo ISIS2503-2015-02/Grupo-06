@@ -1,0 +1,160 @@
+# encoding: utf-8
+<div class="navbar navbar-default navbar-fixed-top" style="margin-bottom:0;background:white">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#inicio">
+        <i class='fa fa-rocket'></i>
+        TBC
+      </a>
+    </div>
+    <div class='collapse navbar-collapse'>
+      <ul class='nav navbar-nav'>
+        <li>
+          <a href="#inicio">Administrador</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top:50px;">
+  <div class="col-md-3 text-center" style="padding-top:30px;">
+    <h2>Servicios</h2>
+    <div class="btn-group-vertical" role="group" aria-label="...">
+      <button id="btn-inventario" class="btn btn-default">Ver Inventario</button>
+      <button class="btn btn-default">Monitorear Vehículos</button>
+      <button class="btn btn-default">Ver estado de estaciones</button>
+      <button class="btn btn-default">Ver reportes de tranvías</button>
+      <button class="btn btn-default">Ver reportes de mobibuses</button>
+      <button class="btn btn-default">Ver accidentes/emergencias</button>
+    </div>
+  </div>
+  <div id="panel-contenido" class="col-md-6 text-center" style="padding-top:100px">
+    <i class="fa fa-user fa-5x"></i>
+    <h2>Desde aquí puedes acceder a todos los servicios de administrador. Selecciona una opción a la izquierda para comenzar.</h2>
+  </div>
+  <div class="col-md-3" style="padding-top:135px">
+    <div id='transp-toolbar' class='btn-group-vertical' role='group' aria-label='...' style="display:none">
+      <button id='btn-tranvia' class='btn btn-default'><i class='fa fa-train'></i>Tranvías</button>
+      <button id='btn-mobibus' class='btn btn-default'><i class='fa fa-cab'></i>Mobibuses</button>
+      <button id='btn-vcub' class='btn btn-default'><i class='fa fa-bicycle'></i>Vcubs</button>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    var funcion="";
+    $("#btn-inventario").click(function(){
+        funcion="inventario";
+        verToolbar();
+        $("#btn-tranvia").click();
+    });
+    $("#btn-tranvia").click(function(){
+        if(funcion==="inventario") {
+            cargarTranvias();
+        }
+    });
+    $("#btn-mobibus").click(function(){
+        if(funcion==="inventario"){
+            cargarMobibuses();
+        }
+    });
+    $("#btn-vcub").click(function(){
+        if(funcion==="inventario"){
+            cargarVcubs();
+        }
+    })
+    function cargarTranvias(){
+        $("#panel-contenido").empty();
+        $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
+        var toapp= "<table class='table table-bordered table-striped'>" +
+                "   <caption>Tranvías</caption>" +
+                "   <thead>"+
+                "   <tr>" +
+                "       <th>ID</th>" +
+                "       <th>Línea</th>" +
+                "       <th>KMs última revisión</th>" +
+                "       <th>Temperatura</th>" +
+                "       <th>Posición</th>" +
+                "       <th>Estado</th>" +
+                "   <tr>"+
+                "   </thead>" +
+                "   <tbody>";
+        $.ajax({
+            url: "http://localhost:3000/tranvia"
+        }).done(function( data ) {
+            $("#panel-contenido").empty();
+            var arr= data;
+            for(i=0;i<data.length;i++){
+                console.log(data[i]);
+                var t= data[i];
+                toapp+="<tr><td>"+t.identificacion+"</td><td>"+t.linea+"</td><td>"+t.kilms_ultima_revision+"</td><td>"+t.temperatura+"</td><td>"+t.posicion+"</td><td>"+t.estado+"</td></tr>";
+            }
+            toapp+="</tbody>" +
+                    "</table>"
+            $("#panel-contenido").append(toapp);
+        });
+    }
+    function cargarMobibuses(){
+        $("#panel-contenido").empty();
+        $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
+        var toapp= "<table class='table table-bordered table-striped'>" +
+                "   <caption>Mobibuses</caption>" +
+                "   <thead>"+
+                "   <tr>" +
+                "       <th>ID</th>" +
+                "       <th>KMs última revisión</th>" +
+                "       <th>Posición</th>" +
+                "       <th>Estado</th>" +
+                "   <tr>"+
+                "   </thead>" +
+                "   <tbody>";
+        $.ajax({
+            url: "http://localhost:3000/mobibuses"
+        }).done(function( data ) {
+            $("#panel-contenido").empty();
+            var arr= data;
+            for(i=0;i<data.length;i++){
+                console.log(data[i]);
+                var t= data[i];
+                toapp+="<tr><td>"+t.id+"</td><td>"+t.kilms_ultima_revision+"</td><td>"+t.posicion+"</td><td>"+t.estado+"</td></tr>";
+            }
+            toapp+="</tbody>" +
+                    "</table>"
+            $("#panel-contenido").append(toapp);
+        });
+    }
+    function cargarVcubs(){
+        $("#panel-contenido").empty();
+        $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
+        var toapp= "<table class='table table-bordered table-striped'>" +
+                "   <caption>Vcubs</caption>" +
+                "   <thead>"+
+                "   <tr>" +
+                "       <th>ID</th>" +
+                "       <th>Posición</th>" +
+                "       <th>Estado</th>" +
+                "       <th>Prestada</th>" +
+                "   <tr>"+
+                "   </thead>" +
+                "   <tbody>";
+        $.ajax({
+            url: "http://localhost:3000/vcubs"
+        }).done(function( data ) {
+            $("#panel-contenido").empty();
+            var arr= data;
+            for(i=0;i<data.length;i++){
+                console.log(data[i]);
+                var t= data[i];
+                toapp+="<tr><td>"+t.id+"</td><td>"+t.posicion+"</td><td>"+t.estado+"</td><td>"+ t.prestada+"</tr>";
+            }
+            toapp+="</tbody>" +
+                    "</table>"
+            $("#panel-contenido").append(toapp);
+        });
+    }
+    function verToolbar(){
+        $("#transp-toolbar").css("display","inline-block");
+    }
+
+</script>
+

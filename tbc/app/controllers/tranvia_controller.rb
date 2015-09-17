@@ -8,6 +8,7 @@ class TranviaController < ApplicationController
   # GET /tranvia.json
   def index
     @tranvia = Tranvium.all
+    render :json => @tranvia
   end
 
   # GET /tranvia/1

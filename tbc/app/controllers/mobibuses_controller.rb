@@ -5,6 +5,7 @@ class MobibusesController < ApplicationController
   # GET /mobibuses.json
   def index
     @mobibuses = Mobibus.all
+    render :json => @mobibuses
   end
 
   # GET /mobibuses/1
