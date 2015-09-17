@@ -22,10 +22,10 @@
     <div class="btn-group-vertical" role="group" aria-label="...">
       <button id="btn-inventario" class="btn btn-default">Ver Inventario</button>
       <button id="btn-monitorear" class="btn btn-default">Monitorear Vehículos</button>
-      <button class="btn btn-default">Ver estado de estaciones</button>
-      <button class="btn btn-default">Ver reportes de tranvías</button>
-      <button class="btn btn-default">Ver reportes de mobibuses</button>
-      <button class="btn btn-default">Ver accidentes/emergencias</button>
+      <button id="btn-estaciones" class="btn btn-default">Ver estado de estaciones</button>
+      <button id="btn-reportets" class="btn btn-default">Ver reportes de tranvías</button>
+      <button id="btn-reportems" class="btn btn-default">Ver reportes de mobibuses</button>
+      <button id="btn-accidentes" class="btn btn-default">Ver accidentes/emergencias</button>
     </div>
   </div>
   <div id="panel-contenido" class="col-md-6 text-center" style="padding-top:100px">
@@ -71,6 +71,18 @@
         $("#panel-contenido").empty();
         funcion="monitorear";
         verToolbar();
+    });
+    $("#btn-reportets").click(function(){
+        ocultarToolbar();
+        cargarReportets();
+    });
+    $("#btn-reportems").click(function(){
+        ocultarToolbar();
+        cargarReportems();
+    });
+    $("#btn-accidentes").click(function(){
+        ocultarToolbar();
+        cargarAccidentes();
     });
     function cargarTranvias(){
         $("#panel-contenido").empty();
@@ -150,11 +162,101 @@
             url: "http://localhost:3000/vcubs"
         }).done(function( data ) {
             $("#panel-contenido").empty();
-            var arr= data;
-            for(i=0;i<data.length;i++){
+            var arr= data.slice(0,10);
+            for(i=0;i<arr.length;i++){
                 console.log(data[i]);
                 var t= data[i];
-                toapp+="<tr><td>"+t.id+"</td><td>"+t.posicion+"</td><td>"+t.estado+"</td><td>"+ t.prestada+"</tr>";
+                toapp+="<tr><td>"+t.id+"</td><td>"+t.posicion+"</td><td>"+t.estado+"</td><td>"+ t.prestada+"</td></tr>";
+            }
+            toapp+="</tbody>" +
+                    "</table>"
+            $("#panel-contenido").append(toapp);
+        });
+    }
+    function cargarReportets(){
+        $("#panel-contenido").empty();
+        $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
+        var toapp= "<table class='table table-bordered table-striped'>" +
+                "   <caption>Reportes de Tranvías</caption>" +
+                "   <thead>"+
+                "   <tr>" +
+                "       <th>ID</th>" +
+                "       <th>Tranvia</th>" +
+                "       <th>Fecha</th>" +
+                "       <th>Trayectos</th>" +
+                "       <th>Tiempo promedio</th>" +
+                "   <tr>"+
+                "   </thead>" +
+                "   <tbody>";
+        $.ajax({
+            url: "http://localhost:3000/reportets"
+        }).done(function( data ) {
+            $("#panel-contenido").empty();
+            var arr= data.slice(0,10);
+            for(i=0;i<arr.length;i++){
+                console.log(data[i]);
+                var t= data[i];
+                toapp+="<tr><td>"+t.id+"</td><td>"+t.tranvium_id+"</td><td>"+t.fecha+"</td><td>"+ t.trayectos+"</td><td>"+ t.tiempopromedio +"</td></tr>";
+            }
+            toapp+="</tbody>" +
+                    "</table>"
+            $("#panel-contenido").append(toapp);
+        });
+    }
+    function cargarReportems(){
+        $("#panel-contenido").empty();
+        $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
+        var toapp= "<table class='table table-bordered table-striped'>" +
+                "   <caption>Reportes de Mobibuses</caption>" +
+                "   <thead>"+
+                "   <tr>" +
+                "       <th>ID</th>" +
+                "       <th>Mobibus</th>" +
+                "       <th>Fecha</th>" +
+                "       <th>Trayectos</th>" +
+                "   <tr>"+
+                "   </thead>" +
+                "   <tbody>";
+        $.ajax({
+            url: "http://localhost:3000/reportems"
+        }).done(function( data ) {
+            $("#panel-contenido").empty();
+            var arr= data.slice(0,10);
+            for(i=0;i<arr.length;i++){
+                console.log(data[i]);
+                var t= data[i];
+                toapp+="<tr><td>"+t.id+"</td><td>"+t.mobibus_id+"</td><td>"+t.fecha+"</td><td>"+ t.trayectos+"</td></tr>";
+            }
+            toapp+="</tbody>" +
+                    "</table>"
+            $("#panel-contenido").append(toapp);
+        });
+    }
+    function cargarAccidentes(){
+        $("#panel-contenido").empty();
+        $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
+        var toapp= "<table class='table table-bordered table-striped'>" +
+                "   <caption>Emergencias/Accidentes</caption>" +
+                "   <thead>"+
+                "   <tr>" +
+                "       <th>ID</th>" +
+                "       <th>Magnitud</th>" +
+                "       <th>Posición</th>" +
+                "       <th>Tipo de vehículo</th>" +
+                "       <th>ID del vehículo</th>" +
+                "       <th>Fecha</th>" +
+                "   <tr>"+
+                "   </thead>" +
+                "   <tbody>";
+        $.ajax({
+            url: "http://localhost:3000/emergencia"
+        }).done(function( data ) {
+            $("#panel-contenido").empty();
+            var arr= data.slice(0,10);
+            for(i=0;i<arr.length;i++){
+                console.log(data[i]);
+                var t= data[i];
+                toapp+="<tr><td>"+t.id+"</td><td>"+t.magnitud+"</td><td>"+t.posicion+"</td><td>"+ t.tipo_vehiculo+"</td><td>"+ t.id_vehiculo+"</td><td>"+ t.fecha+"</td></tr>";
             }
             toapp+="</tbody>" +
                     "</table>"
@@ -163,6 +265,9 @@
     }
     function verToolbar(){
         $("#transp-toolbar").css("display","inline-block");
+    }
+    function ocultarToolbar(){
+        $("#transp-toolbar").css("display","none");
     }
     function mensajeError(x){
         $("#panel-contenido").append("<i class='fa fa-frown-o fa-5x'></i><h2>Lo sentimos. Este servicio aún no está disponible para "+x+"</h2>");
