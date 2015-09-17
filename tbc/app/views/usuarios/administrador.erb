@@ -21,7 +21,7 @@
     <h2>Servicios</h2>
     <div class="btn-group-vertical" role="group" aria-label="...">
       <button id="btn-inventario" class="btn btn-default">Ver Inventario</button>
-      <button class="btn btn-default">Monitorear Vehículos</button>
+      <button id="btn-monitorear" class="btn btn-default">Monitorear Vehículos</button>
       <button class="btn btn-default">Ver estado de estaciones</button>
       <button class="btn btn-default">Ver reportes de tranvías</button>
       <button class="btn btn-default">Ver reportes de mobibuses</button>
@@ -44,6 +44,7 @@
 <script type="text/javascript">
     var funcion="";
     $("#btn-inventario").click(function(){
+        $("#panel-contenido").empty();
         funcion="inventario";
         verToolbar();
         $("#btn-tranvia").click();
@@ -62,7 +63,15 @@
         if(funcion==="inventario"){
             cargarVcubs();
         }
-    })
+        else if(funcion==="monitorear"){
+            mensajeError("vcub");
+        }
+    });
+    $("#btn-monitorear").click(function(){
+        $("#panel-contenido").empty();
+        funcion="monitorear";
+        verToolbar();
+    });
     function cargarTranvias(){
         $("#panel-contenido").empty();
         $("#panel-contenido").append("<i class='fa fa-spinner fa-pulse fa-5x'></i>");
@@ -154,6 +163,9 @@
     }
     function verToolbar(){
         $("#transp-toolbar").css("display","inline-block");
+    }
+    function mensajeError(x){
+        $("#panel-contenido").append("<i class='fa fa-frown-o fa-5x'></i><h2>Lo sentimos. Este servicio aún no está disponible para "+x+"</h2>");
     }
 
 </script>
