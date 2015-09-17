@@ -15,13 +15,19 @@ ActiveRecord::Schema.define(version: 20150916101711) do
 
   create_table "conductormobibuses", force: true do |t|
     t.integer "mobibus_id"
-    t.integer "idMobibus"
     t.integer "conductor_id"
-    t.integer "idConductor"
   end
 
   add_index "conductormobibuses", ["conductor_id"], name: "index_conductormobibuses_on_conductor_id"
   add_index "conductormobibuses", ["mobibus_id"], name: "index_conductormobibuses_on_mobibus_id"
+
+  create_table "conductortranvia", force: true do |t|
+    t.integer "tranvium_id"
+    t.integer "conductor_id"
+  end
+
+  add_index "conductortranvia", ["conductor_id"], name: "index_conductortranvia_on_conductor_id"
+  add_index "conductortranvia", ["tranvium_id"], name: "index_conductortranvia_on_tranvium_id"
 
   create_table "conductors", force: true do |t|
     t.string   "nombre"
@@ -30,15 +36,7 @@ ActiveRecord::Schema.define(version: 20150916101711) do
     t.datetime "updated_at"
   end
 
-  create_table "conductortranvia", force: true do |t|
-    t.integer "tranvium_id"
-    t.integer "idTranvia"
-    t.integer "conductor_id"
-    t.integer "idConductor"
-  end
 
-  add_index "conductortranvia", ["conductor_id"], name: "index_conductortranvia_on_conductor_id"
-  add_index "conductortranvia", ["tranvium_id"], name: "index_conductortranvia_on_tranvium_id"
 
   create_table "emergencia", force: true do |t|
     t.integer  "magnitud"
@@ -60,7 +58,6 @@ ActiveRecord::Schema.define(version: 20150916101711) do
 
   create_table "reportems", force: true do |t|
     t.integer  "mobibus_id"
-    t.integer  "idMobibus"
     t.date     "fecha"
     t.integer  "trayectos"
     t.datetime "created_at"
@@ -71,7 +68,6 @@ ActiveRecord::Schema.define(version: 20150916101711) do
 
   create_table "reportets", force: true do |t|
     t.integer  "tranvium_id"
-    t.integer  "idTranvia"
     t.date     "fecha"
     t.integer  "trayectos"
     t.time     "tiempopromedio"
@@ -83,7 +79,6 @@ ActiveRecord::Schema.define(version: 20150916101711) do
 
   create_table "reservas", force: true do |t|
     t.integer  "usuario_id"
-    t.integer  "idUsuario"
     t.string   "nombreUsuario"
     t.datetime "fecha"
     t.time     "hora_de_salida"

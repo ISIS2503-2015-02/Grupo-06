@@ -1,5 +1,5 @@
 class ConductorsController < ApplicationController
-  before_action :set_conductor, only: [:show, :edit, :update, :destroy]
+  before_action :set_conductor, only: [:show, :edit, :update, :destroy, :asignarm, :asignart]
 
   # GET /conductors
   # GET /conductors.json
@@ -60,6 +60,26 @@ class ConductorsController < ApplicationController
       format.html { redirect_to conductors_url, notice: 'Conductor was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /conductors/1
+  # POST /conductors/1.json
+  def asignarm
+    idmobi = params[:idMobibus]
+    id =  @conductor.id
+    @conductormobibus = Conductormobibus.new
+    @conductormobibus.update_attributes(mobibus_id: idmobi, conductor_id: id)
+    @conductormobibus.save
+    @conductormobibuses = Conductormobibus.all
+  end
+
+  def asignart
+    idtranvi = params[:idTranvia]
+    id =  @conductor.id
+    @conductortranvia = Conductortranvia.new
+    @conductortranvia.update_attributes(tranvium_id: idtranvi, conductor_id: id)
+    @conductortranvia.save
+    @conductortranvia = Conductortranvia.all
   end
 
   private
