@@ -11,6 +11,7 @@ class VcubsController < ApplicationController
   # GET /vcubs/1
   # GET /vcubs/1.json
   def show
+    render :json => @vcub
   end
 
   # GET /vcubs/new
